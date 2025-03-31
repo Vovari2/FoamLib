@@ -1,0 +1,5 @@
+name: FoamLib
+version: '${version}'
+main: me.vovari2.foamlib.FoamLib
+api-version: '1.21'
+author: Vovari2
