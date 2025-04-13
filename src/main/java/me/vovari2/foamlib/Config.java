@@ -2,10 +2,13 @@ package me.vovari2.foamlib;
 
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.List;
 
@@ -129,4 +132,17 @@ public abstract class Config {
                 return enchantment;
         }
         throw new Exception("<red>Value %s is not a enchantment!".formatted(path));}
+
+    protected ExperienceOrb.SpawnReason getExperienceReason(String value, String path) throws Exception {
+        try{ return ExperienceOrb.SpawnReason.valueOf(value.toUpperCase());}
+        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not the reason!".formatted(path));}
+    }
+    protected DyeColor getDyeColor(String value, String path) throws Exception {
+        try{ return DyeColor.valueOf(value.toUpperCase());}
+        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not an dye color!".formatted(path));}
+    }
+    protected EntityDamageEvent.DamageCause getDamageCause(String value, String path) throws Exception {
+        try{ return EntityDamageEvent.DamageCause.valueOf(value.toUpperCase());}
+        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not the cause of the damage!".formatted(path));}
+    }
 }

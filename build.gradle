@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.vovari2'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
     mavenCentral()
@@ -20,13 +20,6 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-bukkit-shade:9.7.0")
-}
-
-shadowJar {
-    relocate("dev.jorel.commandapi", "libs.commandapi")
-    getDestinationDirectory().set(new File("D:\\Minecraft\\Servers\\Purpur 1.21.4\\plugins\\"))
-    archiveFileName = "${project.name}-${project.version}.jar"
 }
 
 def targetJavaVersion = 21
