@@ -26,6 +26,9 @@ public class FileUtils {
         return dataFolder;
     }
 
+    public static void createFolder(File folder){
+        boolean ignored = folder.mkdir();
+    }
     public static @NotNull File createFolder(File parentFolder, String folderName){
         File folder = new File(parentFolder, folderName);
         boolean ignored = folder.mkdir();
