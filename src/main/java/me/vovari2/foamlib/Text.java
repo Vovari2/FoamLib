@@ -6,6 +6,8 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class Text {
+    protected static JavaPlugin instance;
+
     public static TextColor red = TextColor.color(255, 85,85);
     public static TextColor yellow = TextColor.color(255, 255,85);
     public static TextColor green = TextColor.color(85, 255,85);
@@ -21,7 +23,7 @@ public abstract class Text {
     }
     public static void error(Component message, Component messageBegin){
         message = message.color(red);
-        FoamLib.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        instance.getServer().getConsoleSender().sendMessage(messageBegin.append(message));
     }
 
     public static void warning(String message){
@@ -35,7 +37,7 @@ public abstract class Text {
     }
     public static void warning(Component message, Component messageBegin){
         message = message.color(yellow);
-        FoamLib.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        instance.getServer().getConsoleSender().sendMessage(messageBegin.append(message));
     }
 
     public static void info(String message){
@@ -49,7 +51,7 @@ public abstract class Text {
     }
     public static void info(Component message, Component messageBegin){
         message = message.color(green);
-        FoamLib.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        instance.getServer().getConsoleSender().sendMessage(messageBegin.append(message));
     }
 
     public static Component toComponent(String value){
