@@ -1,12 +1,8 @@
 package me.vovari2.foamlib;
 
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ExperienceOrb;
-import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.List;
 
