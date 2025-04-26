@@ -1,7 +1,5 @@
 package me.vovari2.foamlib;
 
-import io.papermc.paper.registry.RegistryAccess;
-import io.papermc.paper.registry.RegistryKey;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -110,7 +108,7 @@ public abstract class Config {
     }
     protected Material getMaterial(String value, String path) throws Exception {
         try{ return Material.valueOf(value.toUpperCase());}
-        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not a material!".formatted(path));}
+        catch(IllegalArgumentException e){ throw new Exception("<red>The value %s is not a material!".formatted(path));}
     }
 
     protected EntityType getEntityType(String path) throws Exception {
@@ -120,29 +118,5 @@ public abstract class Config {
     protected EntityType getEntityType(String value, String path) throws Exception {
         try{ return EntityType.valueOf(value.toUpperCase());}
         catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not a entityType!".formatted(path));}
-    }
-
-    protected Enchantment getEnchantment(String path) throws Exception {
-        String strValue = getString(path);
-        return getEnchantment(strValue, path);
-    }
-    protected Enchantment getEnchantment(String value, String path) throws Exception {
-        for (Enchantment enchantment : RegistryAccess.registryAccess().getRegistry(RegistryKey.ENCHANTMENT)) {
-            if (enchantment.getKey().getKey().equals(value.toLowerCase()))
-                return enchantment;
-        }
-        throw new Exception("<red>Value %s is not a enchantment!".formatted(path));}
-
-    protected ExperienceOrb.SpawnReason getExperienceReason(String value, String path) throws Exception {
-        try{ return ExperienceOrb.SpawnReason.valueOf(value.toUpperCase());}
-        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not the reason!".formatted(path));}
-    }
-    protected DyeColor getDyeColor(String value, String path) throws Exception {
-        try{ return DyeColor.valueOf(value.toUpperCase());}
-        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not an dye color!".formatted(path));}
-    }
-    protected EntityDamageEvent.DamageCause getDamageCause(String value, String path) throws Exception {
-        try{ return EntityDamageEvent.DamageCause.valueOf(value.toUpperCase());}
-        catch(IllegalArgumentException e){ throw new Exception("<red>Value %s is not the cause of the damage!".formatted(path));}
     }
 }
