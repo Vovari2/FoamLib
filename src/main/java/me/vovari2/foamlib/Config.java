@@ -88,11 +88,11 @@ public abstract class Config {
     }
 
     protected List<String> getStringList(String path) throws Exception {
-        return fileConfig.getStringList(path);
+        return getStringList(path, false);
     }
-    protected List<String> getStringList(String path, boolean isNotEmpty) throws Exception {
+    protected List<String> getStringList(String path, boolean mustNotBeEmpty) throws Exception {
         List<String> list = getStringList(path);
-        if (isNotEmpty && list.isEmpty())
+        if (mustNotBeEmpty && list.isEmpty())
             throw new Exception("<red>Value %s cannot be empty!".formatted(path));
 
         return list;
