@@ -80,19 +80,19 @@ public abstract class Config {
 
         return value;
     }
-    protected String getString(String path, boolean isNotEmpty) throws Exception{
+    protected String getString(String path, boolean canBeEmpty) throws Exception{
         String value = getString(path);
-        if (isNotEmpty && value.isEmpty())
+        if (!canBeEmpty && value.isEmpty())
             throw new Exception("<red>Value %s cannot be empty!".formatted(path));
         return value;
     }
 
-    protected List<String> getStringList(String path) throws Exception {
-        return getStringList(path, false);
+    protected List<String> getStringList(String path) {
+        return fileConfig.getStringList(path);
     }
-    protected List<String> getStringList(String path, boolean mustNotBeEmpty) throws Exception {
+    protected List<String> getStringList(String path, boolean canBeEmpty) throws Exception {
         List<String> list = getStringList(path);
-        if (mustNotBeEmpty && list.isEmpty())
+        if (!canBeEmpty && list.isEmpty())
             throw new Exception("<red>Value %s cannot be empty!".formatted(path));
 
         return list;
