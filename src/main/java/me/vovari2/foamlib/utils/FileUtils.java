@@ -1,6 +1,6 @@
 package me.vovari2.foamlib.utils;
 
-import me.vovari2.foamlib.Text;
+import me.vovari2.foamlib.Console;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,7 +22,7 @@ public class FileUtils {
     private static File createPluginFolder(JavaPlugin instance){
         File dataFolder = instance.getDataFolder();
         try{boolean ignored = dataFolder.mkdir();}
-        catch(Exception e){ Text.error("Error when creating a folder \"%s\"!".formatted(dataFolder.getName())); }
+        catch(Exception e){ Console.error("Error when creating a folder \"%s\"!".formatted(dataFolder.getName())); }
         return dataFolder;
     }
 
@@ -38,7 +38,7 @@ public class FileUtils {
     public static File createFileInFolder(File folder, String fileName){
         File file = new File(folder, fileName);
         try { if (!file.exists()) Files.createFile(file.toPath());}
-        catch(IOException e){ Text.error("Error when creating a file \"%s\" in folder \"%s\"!".formatted(fileName, folder.getName()));}
+        catch(IOException e){ Console.error("Error when creating a file \"%s\" in folder \"%s\"!".formatted(fileName, folder.getName()));}
         return file;
     }
     public static void createResourceFileInFolder(JavaPlugin instance, String resourcePath){
@@ -53,19 +53,19 @@ public class FileUtils {
         try{
             return Files.readString(file.toPath());
         } catch(IOException e){
-            Text.error("Error when loading data from a file \"%s\"!".formatted(file.getName()));}
+            Console.error("Error when loading data from a file \"%s\"!".formatted(file.getName()));}
         return null;
     }
     public static void setContentFromFile(File file, String content){
         try (FileWriter writer = new FileWriter(file, false)) {
             writer.append(content);
-        } catch(IOException e){ Text.error("Error when saving data in a file \"%s\"!".formatted(file.getName()));}
+        } catch(IOException e){ Console.error("Error when saving data in a file \"%s\"!".formatted(file.getName()));}
     }
     public static FileConfiguration getContentFromYamlFile(File folder, String fileName){
         return YamlConfiguration.loadConfiguration(new File(folder, fileName));
     }
     public static void setContentFromYamlFile(File folder, String fileName, FileConfiguration configuration){
         try{configuration.save(new File(folder, fileName));}
-        catch(Exception e){ Text.error("Error when saving data in a file \"%s\"!".formatted(fileName));}
+        catch(Exception e){ Console.error("Error when saving data in a file \"%s\"!".formatted(fileName));}
     }
 }

@@ -1,5 +1,5 @@
 name: FoamLib
 version: '${version}'
-main: me.vovari2.foamlib.FoamLib
+main: me.vovari2.foamlib.FoamPlugin
 api-version: '1.21'
 author: Vovari2
