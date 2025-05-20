@@ -5,49 +5,32 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public abstract class Console {
+
     public static void error(String message){
-        error(message, Component.empty());
-    }
-    public static void error(String message, Component messageBegin){
-        error(toComponent(message), messageBegin);
+        error(Text.toComponent(message));
     }
     public static void error(Component message){
-        error(message, Component.empty());
-    }
-    public static void error(Component message, Component messageBegin){
         message = message.color(TextColor.color(255, 85,85));
-        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(getMessageBegin().append(message));
     }
 
     public static void warning(String message){
-        warning(message, Component.empty());
-    }
-    public static void warning(String message, Component messageBegin){
-        warning(toComponent(message), messageBegin);
+        warning(Text.toComponent(message));
     }
     public static void warning(Component message){
-        warning(message, Component.empty());
-    }
-    public static void warning(Component message, Component messageBegin){
         message = message.color(TextColor.color(255, 255,85));
-        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(getMessageBegin().append(message));
     }
-
+    
     public static void info(String message){
-        info(message, Component.empty());
-    }
-    public static void info(String message, Component messageBegin){
-        info(toComponent(message), messageBegin);
+        info(Text.toComponent(message));
     }
     public static void info(Component message){
-        info(message, Component.empty());
-    }
-    public static void info(Component message, Component messageBegin){
         message = message.color(TextColor.color(85, 255,85));
-        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(messageBegin.append(message));
+        FoamPlugin.getInstance().getServer().getConsoleSender().sendMessage(getMessageBegin().append(message));
     }
 
-    public static Component toComponent(String value){
-        return MiniMessage.miniMessage().deserialize(value);
+    public static Component getMessageBegin(){
+        return Text.toComponent("<gray>[%s]<reset> ".formatted(FoamPlugin.PLUGIN_NAME));
     }
 }

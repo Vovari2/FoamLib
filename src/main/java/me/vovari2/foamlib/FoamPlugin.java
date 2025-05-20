@@ -8,18 +8,18 @@ public abstract class FoamPlugin extends JavaPlugin {
         return instance;
     }
 
-    public String PLUGIN_NAME;
-    public String VERSION;
-    public String AUTHOR;
+    public static String PLUGIN_NAME;
+    public static String VERSION;
+    public static String AUTHOR;
 
-    protected void load(JavaPlugin newInstance){
+    protected static void load(JavaPlugin newInstance){
         PLUGIN_NAME = instance.getName();
         VERSION = instance.getPluginMeta().getVersion();
         AUTHOR = instance.getPluginMeta().getAuthors().get(0);
         instance = newInstance;
     }
-    protected void enable(){}
-    protected void disable(){}
+    protected static void enable(){}
+    protected static void disable(){}
 
     protected abstract void onReload();
 }
