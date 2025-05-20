@@ -13,10 +13,11 @@ public abstract class FoamPlugin extends JavaPlugin {
     public static String AUTHOR;
 
     protected static void load(JavaPlugin newInstance){
+        instance = newInstance;
+
         PLUGIN_NAME = instance.getName();
         VERSION = instance.getPluginMeta().getVersion();
         AUTHOR = instance.getPluginMeta().getAuthors().get(0);
-        instance = newInstance;
     }
     protected static void enable(){}
     protected static void disable(){}
