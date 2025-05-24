@@ -80,10 +80,22 @@ public abstract class Config {
 
         return value;
     }
+    protected String getString(String path, String def) throws Exception{
+        String value = fileConfig.getString(path);
+        if (value == null)
+            return def;
+        return value;
+    }
     protected String getString(String path, boolean canBeEmpty) throws Exception{
         String value = getString(path);
         if (!canBeEmpty && value.isEmpty())
             throw new Exception("<red>Value %s cannot be empty!".formatted(path));
+        return value;
+    }
+    protected String getString(String path, boolean canBeEmpty, String def) throws Exception{
+        String value = getString(path);
+        if (!canBeEmpty && value.isEmpty())
+            return def;
         return value;
     }
 
