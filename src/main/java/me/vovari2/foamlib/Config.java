@@ -3,6 +3,8 @@ package me.vovari2.foamlib;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -102,6 +104,11 @@ public abstract class Config {
         String strValue = getString(path);
         return getMaterial(strValue, path);
     }
+    protected Material getMaterial(String path, Material def) throws Exception{
+        String strValue = getString(path);
+        try{ return Material.valueOf(strValue.toUpperCase());}
+        catch(IllegalArgumentException e){ return def; }
+    }
     protected Material getMaterial(String value, String path) throws Exception {
         try{ return Material.valueOf(value.toUpperCase());}
         catch(IllegalArgumentException e){ throw new Exception("<red>The value %s is not a material!".formatted(path));}
@@ -110,6 +117,11 @@ public abstract class Config {
     protected EntityType getEntityType(String path) throws Exception {
         String strValue = getString(path);
         return getEntityType(strValue, path);
+    }
+    protected EntityType getEntityType(String path, EntityType def) throws Exception {
+        String strValue = getString(path);
+        try{ return EntityType.valueOf(strValue.toUpperCase());}
+        catch(IllegalArgumentException e){ return def; }
     }
     protected EntityType getEntityType(String value, String path) throws Exception {
         try{ return EntityType.valueOf(value.toUpperCase());}
