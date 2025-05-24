@@ -115,7 +115,9 @@ public abstract class Config {
         return getMaterial(strValue, path);
     }
     protected Material getMaterial(String path, Material def) throws Exception{
-        String strValue = getString(path);
+        String strValue = fileConfig.getString(path);
+        if (strValue == null)
+            return def;
         try{ return Material.valueOf(strValue.toUpperCase());}
         catch(IllegalArgumentException e){ return def; }
     }
