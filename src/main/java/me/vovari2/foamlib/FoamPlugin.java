@@ -3,7 +3,7 @@ package me.vovari2.foamlib;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class FoamPlugin extends JavaPlugin {
-    private static FoamPlugin instance;
+    protected static FoamPlugin instance;
     public static FoamPlugin getInstance(){
         return instance;
     }
@@ -20,5 +20,5 @@ public abstract class FoamPlugin extends JavaPlugin {
         AUTHOR = instance.getPluginMeta().getAuthors().get(0);
     }
 
-    protected abstract void onReload();
+    public abstract void onReload();
 }
